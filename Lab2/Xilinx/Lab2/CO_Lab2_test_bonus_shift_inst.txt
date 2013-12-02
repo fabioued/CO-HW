@@ -1,0 +1,17 @@
+addi r1, r0, 4
+addi r2, r0, 6
+addi r9, r0, -4
+add  r3, r1, r2
+sub  r4, r2, r3
+beq r9, r1, 1
+addi r5, r0, 1
+or r6, r1, r2
+and r7, r1, r2
+ori r8, r1, 8
+sll r10, r8, 4
+sllv r11, r8, r1
+beq r10, r11, 1
+addi r12, r0, 1
+srl r13, r10, 4
+srlv r14, r10, r1
+

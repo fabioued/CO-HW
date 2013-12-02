@@ -1,0 +1,74 @@
+m255
+K4
+z2
+13
+cModel Technology
+Z0 dd:/program files/Modeltech_pe_edu_10.2c/examples
+!s112 0.1
+!i10d 8192
+!i10e 25
+!i10f 100
+vmarquee
+Z1 !s110 1381248471
+!i10b 1
+Z2 !s100 S=E2I`CSB9ADH1gY1fO>10
+Ilm]29Tb@3B7zJ4iE:b]oA2
+Z3 V`JN@9S9cnhjKRR_L]QIcM3
+Z4 dD:/Document/NCTU/Dropbox/102_1/Computer Organization/Lab0/Code
+Z5 w1381248245
+Fmarquee.v
+Z6 8D:/Document/NCTU/Dropbox/102_1/Computer Organization/Lab0/Code/TESTBENCH.v
+Z7 FD:/Document/NCTU/Dropbox/102_1/Computer Organization/Lab0/Code/TESTBENCH.v
+L0 2
+Z8 OP;L;10.2c;57
+r1
+!s85 0
+31
+Z9 !s108 1381248471.681000
+Z10 !s107 marquee.v|PATTERN.v|D:/Document/NCTU/Dropbox/102_1/Computer Organization/Lab0/Code/TESTBENCH.v|
+Z11 !s90 -reportprogress|300|-work|work|D:/Document/NCTU/Dropbox/102_1/Computer Organization/Lab0/Code/TESTBENCH.v|
+!s101 -O0
+Z12 o-work work -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF -O0
+vPATTERN
+R1
+!i10b 1
+Z13 !s100 04hNi3^_MLHfVPMmTNKEK1
+Igg@1jWZg4XAS2[zO7I=562
+R3
+R4
+R5
+FPATTERN.v
+R6
+R7
+L0 2
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!s101 -O0
+R12
+Z14 n@p@a@t@t@e@r@n
+vTESTBECH
+R1
+!i10b 1
+!s100 QFibS;^W0X3]AMmYeSS4m1
+Ijb6J?A7QM<XA?=eTTORl:1
+R3
+R4
+R5
+R6
+R7
+L0 6
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!s101 -O0
+R12
+n@t@e@s@t@b@e@c@h

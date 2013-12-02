@@ -1,0 +1,49 @@
+ jal (jump and link)
+ 
+ reg[31] = PC+4
+ PC = {PC[31:28],address[25:0]<<2}
+ 
+ MIPS中,第31個register用來存function call時的return address。
+ Reg[31]儲存PC+4並且執行jump
+
+jal
+///////////////////////////////////////////////////////////////////////
+control
+$	RegDst 1bit -> 2bits
+$	RegWritedata -> 1bit  (new wire in control and single cycle cpu)
+
+$regdst's Mux 2 to 1 -> 4 to 1  (size = 5)
+$third port is 31
+
+$add a 2 to 1 Mux in front of RF writedata
+$	0: mux32_mem2reg_o
+$	1: PC + 4
+$	decided by Regwritedata
+
+///////////////////////////////////////////////////////////////////////
+
+ 
+ II.
+ 
+ jr (jump to the address in the register rs)
+  PC=reg[rs];
+  MIPS 裡,return 可用
+  	jr r31
+  來跳回 jal 時存的 return address
+
+///////////////////////////////////////////////////////////////////////
+
+ALU control new wire to Mux_Jump (alucontrol_jr_o)
+	
+	Mux_Jump 2 to 1 -> 4 to 1
+		00 : original 0
+		01 : original 1
+		10 : rfs_o
+		11 : rfs_o
+
+	selector :({alucontrol_jr_o,jump_o})
+
+
+///////////////////////////////////////////////////////////////////////
+
+
