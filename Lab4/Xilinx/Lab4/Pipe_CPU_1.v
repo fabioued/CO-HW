@@ -51,9 +51,9 @@ wire  [31:0]  adder_ex;
 wire  [31:0]  mux_ex_alu;
 wire  [4:0]   mux_ex_2;
 wire  [31:0]  alu_result_o;
-wire			       alu_zero_o;
-wire				      alu_cout_o;
-wire				      alu_overflow_o;
+wire          alu_zero_o;
+wire          alu_cout_o;
+wire          alu_overflow_o;
 wire  [1:0]   branchtype_o;   //useless
 wire          jump_o;         //useless
 //control signal
