@@ -232,10 +232,10 @@ Pipe_Reg #(.size(72)) MEM_WB(
 			.data_o(mem_wb)        
 		);
 
-//Instantiate the components in WB stage      //change 3to1 to 4to1
+//Instantiate the components in WB stage        //change 3to1 to 4to1
 MUX_4to1 #(.size(32)) Mux_wb(
-			.data0_i(mem_wb[68:37]),                //exchange 1 and 0
-			.data1_i(dm_o),                         //due to lab3's control
+			.data1_i(dm_o),                     //exchange
+			.data0_i(mem_wb[68:37]),            //due to lab3's control
 			.data2_i(32'd0),
 			.data3_i(32'd0),
 			.select_i(mem_wb[70:69]),

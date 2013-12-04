@@ -32,4 +32,4 @@ Zip
 *.qdb
 *.qpg
 *.bak
-
+.directory
