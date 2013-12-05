@@ -31,7 +31,7 @@ Pipe_CPU_1 cpu(
 always #(`CYCLE_TIME/2) CLK = ~CLK;	
 
 initial  begin
-$readmemb("CO_P4_TEST7.txt", cpu.IM.Instr_Mem);
+$readmemb("CO_P4_test1.txt", cpu.IM.Instr_Mem);
     
 	CLK = 0;
 	RST = 0;

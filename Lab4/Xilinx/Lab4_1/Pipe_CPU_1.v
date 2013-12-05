@@ -102,8 +102,8 @@ Adder Add_pc(
 
 		
 Pipe_Reg #(.size(64)) IF_ID(        //N is the total length of input/output
-    .rst_i(rst_n),
-	.clk_i(clk_i),   
+    .rst_i(rst_n&&~pcsrc_o),
+	.clk_i(clk_i),    
 	.data_i({adder_if_o, im_o}),
 	.data_o(if_id)
 		);
@@ -144,7 +144,7 @@ Sign_Extend Sign_Extend(
 		);	
 
 Pipe_Reg #(.size(149)) ID_EX(
-    .rst_i(rst_n),
+    .rst_i(rst_n&&~pcsrc_o),
 	.clk_i(clk_i),   
 	.data_i({regwrite_o, mem2reg_o, branch_o, memread_o, memwrite_o, regdst_o, aluop_o, alusrc_o, if_id[63:32], rfs_o, rft_o, se_o, if_id[20:11]}),
 	.data_o(id_ex)
@@ -194,7 +194,7 @@ MUX_2to1 #(.size(5)) Mux_EX_2(
         );
 
 Pipe_Reg #(.size(108)) EX_MEM(
-    .rst_i(rst_n),
+    .rst_i(rst_n&&~pcsrc_o),
 	.clk_i(clk_i),
 	.data_i({id_ex[148:143], adder_ex, alu_zero, alu_result, id_ex[73:42], mux_ex_2}),
 	.data_o(ex_mem)
@@ -213,7 +213,7 @@ Data_Memory DM(
 and branch(pcsrc_o , ex_mem[104], ex_mem[69]);
 
 Pipe_Reg #(.size(72)) MEM_WB(
-    .rst_i(rst_n),
+    .rst_i(rst_n&&~pcsrc_o),
 	.clk_i(clk_i),   
 	.data_i({ex_mem[107:105], dm_o, ex_mem[68:37], ex_mem[4:0]}),
 	.data_o(mem_wb)
