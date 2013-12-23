@@ -7,8 +7,8 @@ sw $7, 4($0)	;mem[1] = 2
 
 for:
 lw $4, 0($3)	;a = mem[i]
-lw $5, 4($3)	;b = mem[i]
-addi $8, $3, 8	;$8 = i+2
+lw $5, 4($3)	;b = mem[i+1]
+addi $8, $3, 2	;$8 = i+2
 addi $4, $4, 2	;a = a+2
 addi $5, $5, 1	;b = b+1
 addi $3, $3, 1	;i++
