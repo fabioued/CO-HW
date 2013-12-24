@@ -199,7 +199,7 @@ begin
 	end	
 	6'b000001:			//bgez
 	begin
-		ALU_op_o <= 3'b101;
+		ALU_op_o <= 3'b110;         //original 101
 		ALUSrc_o <= 1'b0;
 		RegWrite_o <= 1'b0;
 		RegDst_o <= 1'bx;

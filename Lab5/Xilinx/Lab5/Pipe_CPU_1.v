@@ -33,7 +33,7 @@ wire    [63:0]  if_id;
 wire    [31:0]  rfs_o;
 wire    [31:0]  rft_o;
 wire    [31:0]  se_o;
-wire    [10:0]  mux_id_o;
+wire    [13:0]  mux_id_o;
 //control signal
 wire            extend_o;
 wire            regwrite_o; //WB
@@ -52,7 +52,7 @@ wire            ifflush_o;
 wire            idflush_o;
 wire            exflush_o;
 /**** EX stage ****/
-wire    [153:0] id_ex;
+wire    [156:0] id_ex;
 wire    [31:0]  adder_ex;
 wire    [31:0]  shift_o;
 wire            alu_zero;
@@ -62,7 +62,7 @@ wire    [4:0]   mux_ex_2;
 wire            alu_cout_o;     //useless
 wire            alu_overflow_o; //useless
 wire    [2:0]   mux_exflush_1_o;
-wire    [2:0]   mux_exflush_2_o;
+wire    [5:0]   mux_exflush_2_o;
 wire    [31:0]  mux_exalu_a_o;
 wire    [31:0]  mux_exalu_b_o;
 //control signal
@@ -70,8 +70,9 @@ wire    [3:0]   alu_ctrl_o;
 wire    [1:0]   forwarda;
 wire    [1:0]   forwardb;
 /**** MEM stage ****/
-wire    [107:0] ex_mem;
+wire    [110:0] ex_mem;
 wire    [31:0]  dm_o;
+wire            mux_branchtype_o;
 //control signal
 wire            pcsrc_o;
 
@@ -162,9 +163,9 @@ Decoder Control(
 	.MemWrite_o(memwrite_o)
 		);
 
-MUX_2to1 #(.size(11)) Mux_ID(
-    .data0_i({regwrite_o, mem2reg_o, branch_o, memread_o, memwrite_o, regdst_o, aluop_o, alusrc_o}),
-    .data1_i(11'd0),
+MUX_2to1 #(.size(14)) Mux_ID(
+    .data0_i({regwrite_o, mem2reg_o, jump_o, branchtype_o, branch_o, memread_o, memwrite_o, regdst_o, aluop_o, alusrc_o}),
+    .data1_i(14'd0),
     .select_i(idflush_o),
     .data_o(mux_id_o)
         );
@@ -175,7 +176,7 @@ Sign_Extend Sign_Extend(
 	.data_o(se_o)
 		);	
 
-Pipe_Reg #(.size(154)) ID_EX(           //add IF_ID.RegisterRs  153:149 (lab5)
+Pipe_Reg #(.size(157)) ID_EX(           //add IF_ID.RegisterRs  156:152 (lab5)
     .rst_i(rst_n),
 	.clk_i(clk_i),   
 	.data_i({if_id[25:21], mux_id_o, if_id[63:32], rfs_o, rft_o, se_o, if_id[20:11]}),
@@ -195,15 +196,15 @@ Shift_Left_Two_32 SHIFTER(
         );
         
 MUX_2to1 #(.size(3)) Mux_EXFLUSH_1(
-    .data0_i(id_ex[148:146]),
+    .data0_i(id_ex[151:149]),
     .data1_i(3'd0),
     .select_i(exflush_o),
     .data_o(mux_exflush_1_o)
         );
 
-MUX_2to1 #(.size(3)) Mux_EXFLUSH_2(
-    .data0_i(id_ex[145:143]),
-    .data1_i(3'd0),
+MUX_2to1 #(.size(6)) Mux_EXFLUSH_2(
+    .data0_i(id_ex[148:143]),
+    .data1_i(6'd0),
     .select_i(exflush_o),
     .data_o(mux_exflush_2_o)
         );
@@ -261,15 +262,15 @@ MUX_2to1 #(.size(5)) Mux_EX_2(
 Forwarding Forwarding_EX (
     .ForwardA(forwarda),
     .ForwardB(forwardb),    
-    .IDEXRs(id_ex[153:149]),
+    .IDEXRs(id_ex[156:152]),
     .IDEXRt(id_ex[9:5]),
     .EXMEMRd(ex_mem[4:0]),
-    .EXMEMRegWrite(ex_mem[107]),
+    .EXMEMRegWrite(ex_mem[110]),
     .MEMWBRd(mem_wb[4:0]),
     .MEMWBRegWrite(mem_wb[71])
         );
 
-Pipe_Reg #(.size(108)) EX_MEM(
+Pipe_Reg #(.size(111)) EX_MEM(
     .rst_i(rst_n),
 	.clk_i(clk_i),
 	.data_i({mux_exflush_1_o, mux_exflush_2_o, adder_ex, alu_zero, alu_result, mux_exalu_b_o, mux_ex_2}),
@@ -285,13 +286,22 @@ Data_Memory DM(
 	.MemWrite_i(ex_mem[102]),
 	.data_o(dm_o)
 	    );
-        
-and branch(pcsrc_o , ex_mem[104], ex_mem[69]);
+
+MUX_4to1 #(.size(1)) Mux_MEM_branchtype(
+    .data0_i(ex_mem[69]),
+    .data1_i(~(ex_mem[69] | ex_mem[68])),       //37
+    .data2_i(~ex_mem[68]),
+    .data3_i(~ex_mem[69]),
+    .select_i(ex_mem[106:105]),
+    .data_o(mux_branchtype_o)
+        );
+
+and branch(pcsrc_o , ex_mem[104], mux_branchtype_o);
 
 Pipe_Reg #(.size(72)) MEM_WB(
     .rst_i(rst_n),
 	.clk_i(clk_i),   
-	.data_i({ex_mem[107:105], dm_o, ex_mem[68:37], ex_mem[4:0]}),
+	.data_i({ex_mem[110:108], dm_o, ex_mem[68:37], ex_mem[4:0]}),
 	.data_o(mem_wb)
         );
 

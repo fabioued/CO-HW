@@ -49,14 +49,16 @@ wire	[32-1:0]result_w;
 wire	[31:0]	result;
 
 wire	[30:0]	w_cin;
-wire				cout_w;
+wire			cout_w;
 reg				overflow;
 reg				zero;
 reg				cout;
-
-
+/*
+reg             src1;
+reg             src2;
+*/
 wire	[31:0]	set;
-wire				carryin;
+wire			carryin;
 /*
 reg    [32-1:0] result;
 reg             zero;
@@ -72,12 +74,20 @@ begin
 end
 
 //zero
+/*
 always @(*)
 begin
 	if (result == 32'd0) zero = 1'b1;
 	else zero = 1'b0;
 end
+*/
 
+always @(*)
+begin
+	if (src1 == src2) zero = 1'b1;
+    else if (src1 > src2) zero = 1'b0;
+	else zero = 1'b0;
+end
 /////////bonus///////////////////////////////////////////
 //equal
 reg			ans;
