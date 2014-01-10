@@ -1,0 +1,48 @@
+block size / cache size:4 / 64
+Miss Rate:0.720488
+
+block size / cache size:4 / 128
+Miss Rate:0.0922659
+
+block size / cache size:4 / 256
+Miss Rate:0.0854817
+
+block size / cache size:4 / 512
+Miss Rate:0.0854817
+
+block size / cache size:8 / 64
+Miss Rate:0.404342
+
+block size / cache size:8 / 128
+Miss Rate:0.0502035
+
+block size / cache size:8 / 256
+Miss Rate:0.0434193
+
+block size / cache size:8 / 512
+Miss Rate:0.0434193
+
+block size / cache size:16 / 64
+Miss Rate:0.213026
+
+block size / cache size:16 / 128
+Miss Rate:0.0284939
+
+block size / cache size:16 / 256
+Miss Rate:0.0217096
+
+block size / cache size:16 / 512
+Miss Rate:0.0217096
+
+block size / cache size:32 / 64
+Miss Rate:0.157395
+
+block size / cache size:32 / 128
+Miss Rate:0.0176391
+
+block size / cache size:32 / 256
+Miss Rate:0.0108548
+
+block size / cache size:32 / 512
+Miss Rate:0.0108548
+

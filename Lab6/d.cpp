@@ -1,54 +1,54 @@
 #include <iostream>
 #include <math.h>
-#include <cstdio>
+#include <stdio.h>
+
 using namespace std;
 
 struct cache_content{
 	bool v;
 	unsigned int tag;
-	//unsigned int data[16];    
+//	unsigned int	data[16];    
 };
+const int K = 1024;
 
-int log2 (int n) {
+int log2(int n) {
 	int a = 0;
 	while (n > 1) {
-		a++;
 		n = n >> 1;
+		a++;
 	}
 	return a;
 }
 
-const int K = 1024;
-
-void simulate (int cache_size, int block_size) {
+void simulate(int cache_size, int block_size) {
 	unsigned int tag, index, x;
-
+	
 	int offset_bit = (int) log2(block_size);
-	int index_bit = (int) log2(cache_size / block_size);
+	int index_bit = (int) log2(cache_size/block_size);
 	int line = cache_size >> (offset_bit);
 
+	/////////
 	double AccessNum = 0;
 	int MissNum = 0;
+	
 
-	cache_content * cache = new cache_content[line];
-	cout << "cache_size: " << cache_size << endl;
-	cout << "block_size: " << block_size << endl;
+	cache_content *cache = new cache_content[line];
 	//cout << "cache line:" << line << endl;
 
-	for(int j = 0; j < line; j++) cache[j].v = false;
+	for(int j = 0; j < line; j++) {
+		cache[j].v = false;
+	}
 	
 	FILE * fp = fopen("ICACHE.txt", "r");					//read file
 	
 	while(fscanf(fp, "%x", &x) != EOF) {
 		AccessNum++;
-
 	//	cout << hex << x << " ";
-		index = (x >> offset_bit) & (line - 1);
-		tag = x >> (index_bit + offset_bit);
-		
+		index = (x >> offset_bit) & (line-1);
+		tag = x >> (index_bit+offset_bit);
 		if(cache[index].v && cache[index].tag == tag) {
 			cache[index].v = true; 			//hit
-		} else{						
+		} else {						
 			cache[index].v = true;			//miss
 			cache[index].tag = tag;
 			MissNum++;
@@ -57,12 +57,13 @@ void simulate (int cache_size, int block_size) {
 	fclose(fp);
 
 	delete [] cache;
-
-	cout << "miss rate: " << (MissNum / AccessNum) << endl << endl;;
+	cout << "block size / cache size:" << block_size << " / " << cache_size << endl;
+	cout << "Miss Rate:" << MissNum / AccessNum << endl << endl;
 }
 	
-int main() {
+int main(){
 	// Let us simulate 4KB cache with 16B blocks
+
 	simulate(64, 4);
 	simulate(128, 4);
 	simulate(256, 4);
@@ -82,5 +83,4 @@ int main() {
 	simulate(128, 32);
 	simulate(256, 32);
 	simulate(512, 32);
-
 }

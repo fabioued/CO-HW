@@ -1,0 +1,144 @@
+ways: 1
+block size / cache size: 4B / 1K
+Miss: 24057
+AccessNum: 69440
+Miss Rate: 0.346443
+
+ways: 1
+block size / cache size: 4B / 2K
+Miss: 23431
+AccessNum: 69440
+Miss Rate: 0.337428
+
+ways: 1
+block size / cache size: 4B / 4K
+Miss: 21076
+AccessNum: 69440
+Miss Rate: 0.303514
+
+ways: 1
+block size / cache size: 4B / 8K
+Miss: 14782
+AccessNum: 69440
+Miss Rate: 0.212874
+
+ways: 1
+block size / cache size: 4B / 16K
+Miss: 10583
+AccessNum: 69440
+Miss Rate: 0.152405
+
+ways: 1
+block size / cache size: 4B / 32K
+Miss: 7135
+AccessNum: 69440
+Miss Rate: 0.102751
+
+ways: 2
+block size / cache size: 4B / 1K
+Miss: 23307
+AccessNum: 69440
+Miss Rate: 0.335642
+
+ways: 2
+block size / cache size: 4B / 2K
+Miss: 22924
+AccessNum: 69440
+Miss Rate: 0.330127
+
+ways: 2
+block size / cache size: 4B / 4K
+Miss: 21709
+AccessNum: 69440
+Miss Rate: 0.31263
+
+ways: 2
+block size / cache size: 4B / 8K
+Miss: 14642
+AccessNum: 69440
+Miss Rate: 0.210858
+
+ways: 2
+block size / cache size: 4B / 16K
+Miss: 9408
+AccessNum: 69440
+Miss Rate: 0.135484
+
+ways: 2
+block size / cache size: 4B / 32K
+Miss: 6948
+AccessNum: 69440
+Miss Rate: 0.100058
+
+ways: 4
+block size / cache size: 4B / 1K
+Miss: 23086
+AccessNum: 69440
+Miss Rate: 0.33246
+
+ways: 4
+block size / cache size: 4B / 2K
+Miss: 22786
+AccessNum: 69440
+Miss Rate: 0.328139
+
+ways: 4
+block size / cache size: 4B / 4K
+Miss: 22169
+AccessNum: 69440
+Miss Rate: 0.319254
+
+ways: 4
+block size / cache size: 4B / 8K
+Miss: 16661
+AccessNum: 69440
+Miss Rate: 0.239934
+
+ways: 4
+block size / cache size: 4B / 16K
+Miss: 10293
+AccessNum: 69440
+Miss Rate: 0.148229
+
+ways: 4
+block size / cache size: 4B / 32K
+Miss: 6854
+AccessNum: 69440
+Miss Rate: 0.0987039
+
+ways: 8
+block size / cache size: 4B / 1K
+Miss: 23012
+AccessNum: 69440
+Miss Rate: 0.331394
+
+ways: 8
+block size / cache size: 4B / 2K
+Miss: 22749
+AccessNum: 69440
+Miss Rate: 0.327607
+
+ways: 8
+block size / cache size: 4B / 4K
+Miss: 22412
+AccessNum: 69440
+Miss Rate: 0.322753
+
+ways: 8
+block size / cache size: 4B / 8K
+Miss: 17685
+AccessNum: 69440
+Miss Rate: 0.25468
+
+ways: 8
+block size / cache size: 4B / 16K
+Miss: 10795
+AccessNum: 69440
+Miss Rate: 0.155458
+
+ways: 8
+block size / cache size: 4B / 32K
+Miss: 6841
+AccessNum: 69440
+Miss Rate: 0.0985167
+
