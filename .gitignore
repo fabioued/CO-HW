@@ -33,3 +33,4 @@ Zip
 *.qpg
 *.bak
 .directory
+zip*
